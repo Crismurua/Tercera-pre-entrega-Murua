@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
+from django.http import HttpResponse
 from app.models import *
 from app.forms import *
 
@@ -28,7 +29,7 @@ def productos(request):
 
             formulario = ProductoFormulario(request.POST) 
 
-            if formulario.is_valid:
+            if formulario.is_valid():
 
                   informacion = formulario.cleaned_data
 
@@ -40,6 +41,21 @@ def productos(request):
 
       else: 
 
-            formulario_vacio= ProductoFormulario() #Formulario vacio para construir el html
+            formulario= ProductoFormulario() #Formulario vacio para construir el html
 
-      return render(request, "app/productos.html", {"formulario_vacio":formulario_vacio})
+      return render(request, "app/productos.html", {"formulario":formulario})
+
+
+def buscar(request):
+
+      if  request.GET["nombre"]:
+
+            nombre = request.GET['nombre'] 
+            precio = Producto.objects.filter(nombre__icontains=nombre)
+
+            return render(request, "app/home.html", {"nombre":nombre, "precio":precio})
+
+      else: 
+            respuesta = "No enviaste datos"
+
+      return render(request, "app/home.html", {"respuesta":respuesta})

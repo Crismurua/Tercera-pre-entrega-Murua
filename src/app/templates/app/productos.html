@@ -3,12 +3,21 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
-
-
     <!--Aquí va lo que cambia, y lo asociado a está vista :) -->
-    <h1>Productos</h1>
-    <p>Info de los productos</p>
+    {% if formulario.errors %}
 
-  
+    <p style="color: red;"> Están mal los datos, revisar</p>
+
+    {% endif %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        
+        <table>
+            {{ formulario.as_table }}
+        </table>
+
+        <input type="submit", value="Enviar">
+
+    </form>
 
 {% endblock %}

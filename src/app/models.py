@@ -6,6 +6,9 @@ class Producto(models.Model):
     cantidad = models.IntegerField()
     precio = models.FloatField()
     
+    def __str__(self):
+        return f"Producto: {self.nombre} - Precio: {self.precio}"
+    
 class Vendedor(models.Model):
     nombre = models.CharField(max_length=30)
     apellido = models.CharField(max_length=30)

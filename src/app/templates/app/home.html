@@ -6,36 +6,35 @@
 
 
     <!--Aquí va lo que cambia, y lo asociado a está vista :) -->
-    <h1>Este es el título del Inicio que cambio</h1>
   
 
-    <h3>Podes buscar una camada:</h3>
+    <h3>Podes buscar un producto:</h3>
 
-    <!-- <form action="/AppCoder/buscar/" method="GET">
+    <form action="/app/buscar/" method="GET">
 
-        <input type="number" name="camada" id="camada">
+        <input type="text" name="nombre" id="nombre">
 
         <input type="submit" value="Buscar">
 
 
 
 
-    </form> -->
+    </form>
 
     
-<!-- 
-    {% if cursos %}
 
-    <p>Estamos buscando el: {{camada}}</p>
+    {% if productos %}
+
+    <p>Estamos buscando el: {{nombre}}</p>
 
     <ul>
-	{% for curso in cursos %}
-		<li> {{curso.nombre}} </li>
-		<li> {{curso.camada}} </li>
+	{% for producto in productos %}
+		<li> {{producto.nombre}} </li>
+		<li> U$D {{producto.precio}} </li>
 	{% endfor %}
 
     </ul>
 
-    {% endif %} -->
+    {% endif %}
 
 {% endblock %}
