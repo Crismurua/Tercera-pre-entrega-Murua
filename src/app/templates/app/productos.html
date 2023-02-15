@@ -4,12 +4,18 @@
 
 {% block contenidoQueCambia %}
     <!--Aquí va lo que cambia, y lo asociado a está vista :) -->
+    <h2>Productos</h2>
+    {% for producto in productos %}
+    {{producto.nombre}} - U$D {{producto.precio}}<br>
+    {% endfor %}
+    <hr>
+
     {% if formulario.errors %}
 
     <p style="color: red;"> Están mal los datos, revisar</p>
 
     {% endif %}
-    <form action="" method="POST">
+    <form action="{% url 'productos' %}" method="POST">
         {% csrf_token %}
         
         <table>

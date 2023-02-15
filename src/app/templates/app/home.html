@@ -7,12 +7,42 @@
 
     <!--Aquí va lo que cambia, y lo asociado a está vista :) -->
   
-
+<div>
     <h3>Podes buscar un producto:</h3>
 
-    <form action="/app/buscar/" method="GET">
+    <form action="/buscar" method="GET">
 
         <input type="text" name="nombre" id="nombre">
+
+        <input type="submit" value="Buscar">
+
+    </form>
+
+
+    
+    {% if productos %}
+
+    <ul>
+	{% for producto in productos %}
+		<li> {{producto.nombre}} </li>
+		<li> U$D {{producto.precio}} </li>
+        {% endfor %}
+        
+    </ul>
+    <hr>
+
+    {% endif %}
+
+    <p style="color: red;">{{respuesta}}</p>
+</div>
+
+<div>
+
+    <h3>Podes buscar una oferta:</h3>
+
+    <form action="/buscar-oferta" method="GET">
+
+        <input type="text" name="producto" id="producto">
 
         <input type="submit" value="Buscar">
 
@@ -21,20 +51,81 @@
 
     </form>
 
+
     
-
-    {% if productos %}
-
-    <p>Estamos buscando el: {{nombre}}</p>
+    {% if ofertas %}
 
     <ul>
-	{% for producto in productos %}
-		<li> {{producto.nombre}} </li>
-		<li> U$D {{producto.precio}} </li>
-	{% endfor %}
-
+	{% for oferta in ofertas %}
+		<li> {{oferta.producto}} </li>
+		<li> {{oferta.cantidad}} </li>
+		<li> U$D {{oferta.total}} </li>
+        {% endfor %}
+        
     </ul>
+    <hr>
 
     {% endif %}
+
+    <p style="color: red;">{{respuesta}}</p>
+</div>
+
+<div>
+
+    <h3>Podes buscar un vendedor:</h3>
+
+    <form action="/buscar-vendedor" method="GET">
+
+        <input type="text" name="email" id="email">
+
+        <input type="submit" value="Buscar">
+
+    </form>
+
+    
+    {% if vendedores %}
+
+    <ul>
+	{% for vendedor in vendedores %}
+		<li> {{vendedor.nombre}} {{vendedor.apellido}} <br> ventas: {{vendedor.ventas}}</li>
+        {% endfor %}
+        
+    </ul>
+    <hr>
+
+    {% endif %}
+
+    <p style="color: red;">{{respuesta}}</p>
+</div>
+
+<div class="mb-4">
+
+    <h3>Podes buscar un comprador:</h3>
+
+    <form action="/buscar-comprador" method="GET">
+
+        <input type="text" name="email" id="email">
+
+        <input type="submit" value="Buscar">
+
+    </form>
+
+    
+    {% if compradores %}
+
+    <ul>
+	{% for comprador in compradores %}
+    <li> {{comprador.nombre}} {{comprador.apellido}} <br> compras: {{comprador.compras}}</li>
+        {% endfor %}
+        
+    </ul>
+    <hr>
+
+    {% endif %}
+
+    <p style="color: red;">{{respuesta}}</p>
+</div>
+
+
 
 {% endblock %}

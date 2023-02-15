@@ -7,8 +7,26 @@
 
     <!--Aquí va lo que cambia, y lo asociado a está vista :) -->
     <h1>Vendedores</h1>
-    <p>Info de los vendedores</p>
+    {% for vendedor in vendedores %}
+      Nombre: {{vendedor.nombre}} - {{vendedor.apellido}}<br>  Email {{vendedor.email}} <br>  Ventas: {{vendedor.ventas}}<br>
+    {% endfor %}
+    <hr>
 
+    {% if formulario.errors %}
+
+    <p style="color: red;"> Están mal los datos, revisar</p>
+
+    {% endif %}
+    <form action="{% url 'vendedores' %}" method="POST">
+        {% csrf_token %}
+        
+        <table>
+            {{ formulario.as_table }}
+        </table>
+
+        <input type="submit", value="Enviar">
+
+    </form>
   
 
 {% endblock %}

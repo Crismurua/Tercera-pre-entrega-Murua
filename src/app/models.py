@@ -7,7 +7,7 @@ class Producto(models.Model):
     precio = models.FloatField()
     
     def __str__(self):
-        return f"Producto: {self.nombre} - Precio: {self.precio}"
+        return f"Producto: {self.nombre} - Cantidad: {self.cantidad} - Precio: {self.precio}"
     
 class Vendedor(models.Model):
     nombre = models.CharField(max_length=30)
